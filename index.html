@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>🎁 नाना वाढदिवस | शंतनु</title>
+  <!-- Google Fonts with Marathi support -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ========== SURPRISE BOX ========== */
+    .surprise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 10%, #1a0a10 0%, #0d0508 100%);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .surprise-box {
+      text-align: center;
+      animation: pulseGlow 2s ease-in-out infinite;
+      padding: 2rem;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); text-shadow: 0 0 10px rgba(255,107,138,0.3); }
+      50% { transform: scale(1.02); text-shadow: 0 0 30px rgba(255,107,138,0.8); }
+    }
+
+    @keyframes bounceGift {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-15px) rotate(-5deg); }
+      75% { transform: translateY(-8px) rotate(5deg); }
+    }
+
+    .gift-icon {
+      font-size: 8rem;
+      filter: drop-shadow(0 0 30px rgba(255, 107, 138, 0.6));
+      animation: bounceGift 1.2s ease infinite;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .surprise-box h2 {
+      font-size: 2.8rem;
+      background: linear-gradient(135deg, #FFE4E8, #FFB6C6, #FF8FA5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-top: 1.5rem;
+      font-weight: 700;
+    }
+
+    .surprise-box p {
+      color: #FFB6C6;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .click-text {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, rgba(255,158,181,0.2), rgba(255,107,138,0.3));
+      display: inline-block;
+      padding: 0.8rem 2.5rem;
+      border-radius: 60px;
+      border: 2px solid #FF9EB5;
+      color: #FFE4E8;
+      font-weight: 600;
+      font-size: 1.2rem;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Music Control Button */
+    .music-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #FF9EB5, #FF6B8A);
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 1000;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: all 0.3s;
+    }
+    .music-control:hover {
+      transform: scale(1.05);
+    }
+
+    /* ========== MAIN WEBSITE ========== */
+    .website-wrapper {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1.2s ease;
+    }
+
+    .website-wrapper.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .main-website {
+      background: linear-gradient(135deg, #1a0f14 0%, #2d1b22 50%, #1a0f14 100%);
+      min-height: 100vh;
+    }
+
+    /* Animated Background */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .flower-bg {
+      position: absolute;
+      opacity: 0.06;
+      animation: floatFlower 25s infinite linear;
+      font-size: 3rem;
+      pointer-events: none;
+    }
+
+    @keyframes floatFlower {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.08; }
+      90% { opacity: 0.08; }
+      100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+    }
+
+    .flower-bg:nth-child(1) { left: 5%; animation-duration: 18s; }
+    .flower-bg:nth-child(2) { left: 25%; animation-duration: 22s; animation-delay: 3s; }
+    .flower-bg:nth-child(3) { left: 45%; animation-duration: 15s; animation-delay: 7s; font-size: 4rem; }
+    .flower-bg:nth-child(4) { left: 65%; animation-duration: 25s; animation-delay: 2s; }
+    .flower-bg:nth-child(5) { left: 85%; animation-duration: 20s; animation-delay: 5s; font-size: 2rem; }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    section {
+      padding: 5rem 0;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+      background: linear-gradient(135deg, #FFE4E8, #FFB6C6, #FF8FA5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '🌸';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
+      color: #FF9EB5;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-content {
+      background: rgba(255, 245, 245, 0.15);
+      backdrop-filter: blur(15px);
+      border-radius: 60px;
+      padding: 3rem;
+      border: 1px solid rgba(255, 200, 210, 0.3);
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFE4E8, #FFB6C6, #FF8FA5, #FF6B8A);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #FFE4E8;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #FF9EB5, #FF6B8A);
+      color: white;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      margin: 0.5rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 107, 138, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(255, 107, 138, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #FF9EB5;
+    }
+
+    /* Login Modal */
+    .login-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 10001;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-card {
+      background: rgba(255,245,245,0.95);
+      backdrop-filter: blur(15px);
+      border-radius: 40px;
+      padding: 2.5rem;
+      text-align: center;
+      width: 350px;
+      box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+    }
+
+    .login-card input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 30px;
+      border: 1px solid #FFD0D8;
+      font-family: inherit;
+    }
+
+    /* Admin Panel */
+    .admin-panel {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 10002;
+      overflow-y: auto;
+    }
+
+    .admin-card {
+      background: rgba(255,245,245,0.98);
+      border-radius: 40px;
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 800px;
+    }
+
+    .wish-item {
+      background: white;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .delete-wish {
+      background: #FF6B8A;
+      color: white;
+      border: none;
+      padding: 5px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    /* About Section */
+    .about-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: rgba(255, 245, 245, 0.92);
+      backdrop-filter: blur(10px);
+      border-radius: 48px;
+      padding: 2rem;
+    }
+    .about-text { flex: 2; }
+    .about-text p { font-size: 1rem; margin-bottom: 1rem; color: #3d2630; line-height: 1.6; }
+    .about-quote { font-size: 1rem; font-style: italic; color: #C26A7A; border-left: 3px solid #C26A7A; padding-left: 1rem; margin-top: 1rem; }
+    .about-icon { flex: 1; text-align: center; background: #FDE8E9; padding: 1.5rem; border-radius: 40px; }
+    .about-icon i { font-size: 3rem; color: #C26A7A; }
+
+    /* Gallery - 6 Images with local path */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-top: 1rem;
+    }
+    .gallery-card {
+      background: rgba(255,250,250,0.95);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.4s;
+      cursor: pointer;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    .gallery-card:hover { transform: translateY(-12px) scale(1.02); box-shadow: 0 25px 45px rgba(0,0,0,0.25); }
+    .gallery-img { height: 260px; overflow: hidden; position: relative; background: #2d1b22; display: flex; align-items: center; justify-content: center; }
+    .gallery-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+    .gallery-card:hover .gallery-img img { transform: scale(1.08); }
+    .gallery-img .no-image {
+      color: #FFB6C6;
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 1rem;
+    }
+    .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); padding: 1rem; text-align: center; }
+    .gallery-overlay span { color: white; font-weight: 600; font-size: 0.9rem; }
+    .gallery-caption { padding: 1rem; text-align: center; font-weight: 500; color: #6B3A47; background: white; font-size: 0.9rem; }
+
+    /* Guest Book */
+    .guestbook-wrapper {
+      background: rgba(255, 245, 245, 0.92);
+      backdrop-filter: blur(10px);
+      border-radius: 48px;
+      padding: 2rem;
+    }
+    .guestbook-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .blessing-card {
+      background: white;
+      padding: 1.2rem;
+      border-radius: 24px;
+      text-align: center;
+      transition: all 0.3s;
+      border: 1px solid #FFD0D8;
+    }
+    .blessing-card:hover { transform: translateY(-5px); }
+    .blessing-card i { font-size: 1.8rem; color: #FF6B8A; }
+    .blessing-text { font-style: italic; margin: 0.5rem 0; color: #3d2630; }
+    .blessing-name { font-weight: 700; color: #C26A7A; }
+    .add-blessing-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .add-blessing-form input, .add-blessing-form textarea {
+      padding: 12px 18px;
+      border-radius: 30px;
+      border: 1px solid #FFD0D8;
+      font-family: inherit;
+      width: 220px;
+    }
+    .add-blessing-form textarea { width: 280px; }
+
+    /* Values */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .value-card {
+      background: rgba(255, 245, 245, 0.92);
+      padding: 1.5rem;
+      border-radius: 28px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .value-card:hover { transform: translateY(-8px); }
+    .value-card i { font-size: 2.5rem; color: #FF6B8A; margin-bottom: 1rem; }
+    .value-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: #6B3A47; }
+
+    /* Message Card */
+    .message-card {
+      background: linear-gradient(135deg, rgba(255,240,240,0.96), rgba(255,250,250,0.96));
+      backdrop-filter: blur(12px);
+      border-radius: 60px;
+      padding: 2.5rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .message-text { font-size: 1.2rem; line-height: 1.6; color: #3d2630; }
+
+    /* Cake Section */
+    .cake-section {
+      text-align: center;
+      background: rgba(255,245,245,0.92);
+      backdrop-filter: blur(10px);
+      border-radius: 60px;
+      padding: 2.5rem;
+    }
+    .cake-icon { font-size: 4rem; animation: bounce 1s ease infinite; display: inline-block; }
+    @keyframes bounce { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-10px); } }
+
+    /* Footer */
+    footer {
+      background: rgba(45,27,34,0.95);
+      color: #FFE4E8;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .admin-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 30px;
+      cursor: pointer;
+      z-index: 999;
+      font-size: 0.8rem;
+    }
+
+    /* Image Error Fallback */
+    .gallery-img img.error {
+      display: none;
+    }
+    .gallery-img .image-fallback {
+      display: none;
+    }
+    .gallery-img img.error + .image-fallback {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: #FFB6C6;
+      text-align: center;
+    }
+
+    @media (max-width: 992px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .container { padding: 0 1rem; }
+      .hero h1 { font-size: 2rem; }
+      .section-title { font-size: 1.8rem; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gift-icon { font-size: 5rem; }
+      .surprise-box h2 { font-size: 1.5rem; }
+      .about-wrapper { flex-direction: column; text-align: center; }
+      .add-blessing-form { flex-direction: column; align-items: center; }
+      .add-blessing-form input, .add-blessing-form textarea { width: 90%; }
+      .gallery-img { height: 220px; }
+      .music-control { padding: 8px 12px; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SURPRISE BOX -->
+<div id="surpriseOverlay" class="surprise-overlay" onclick="openSurprise()">
+  <div class="surprise-box">
+    <div class="gift-icon">🎁</div>
+    <h2>प्रिय नाना, तुमच्यासाठी एक सरप्राईज!</h2>
+    <p>शंतनुने तुमच्या वाढदिवसानिमित्त तयार केलेली ही छोटीशी भेट...</p>
+    <div class="click-text">✨ इथे क्लिक करा आणि अनुभवा ✨</div>
+  </div>
+</div>
+
+<!-- Background Music Audio Element -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="music/Man_Udhan_Varyache.mpeg" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- Music Control Button -->
+<button id="musicControl" class="music-control" style="display: none;" onclick="toggleMusic()">
+  <i class="fas fa-music"></i> <span id="musicStatus">संगीत सुरू आहे</span>
+</button>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="login-modal">
+  <div class="login-card">
+    <i class="fas fa-lock" style="font-size: 3rem; color: #FF6B8A;"></i>
+    <h2 style="margin: 1rem 0;">Admin Login</h2>
+    <input type="text" id="loginUsername" placeholder="Username">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button class="btn" onclick="checkLogin()">Login</button>
+    <button class="btn btn-outline" onclick="closeLoginModal()" style="margin-top: 10px;">Close</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" class="admin-panel">
+  <div class="admin-card">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+      <h2 style="color: #6B3A47;">📝 सर्व शुभेच्छा (Wishes)</h2>
+      <button class="btn" onclick="closeAdminPanel()" style="padding: 0.5rem 1rem;">✖ Close</button>
+    </div>
+    <div id="wishesListAdmin"></div>
+  </div>
+</div>
+
+<!-- MAIN WEBSITE -->
+<div id="websiteWrapper" class="website-wrapper">
+  <div class="main-website">
+    <div class="animated-bg">
+      <div class="flower-bg">🌸</div><div class="flower-bg">🌷</div><div class="flower-bg">🌹</div>
+      <div class="flower-bg">🌸</div><div class="flower-bg">🌺</div>
+    </div>
+
+    <button class="admin-btn" onclick="showLoginModal()"><i class="fas fa-user-shield"></i> Admin</button>
+
+    <main>
+      <!-- SECTION 1: HERO -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <p style="color: #FFB6C6; margin-bottom: 0.5rem;">🌸 शंतनुचं मनोगत 🌸</p>
+            <h1>प्रिय नाना,<br>तुम्ही माझे हृदय</h1>
+            <p>मी, शंतनु तुमचा नातू, तुमच्या वाढदिवसानिमित्त ही छोटीशी भेट.<br>तुमचे प्रेम, आशीर्वाद हाच माझा खरा ठेवा.</p>
+            <div>
+              <a href="#gallery" class="btn">📸 स्मृतिचित्रे पहा</a>
+              <a href="#guestbook" class="btn btn-outline">📝 आशीर्वाद द्या</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: ABOUT NANA -->
+      <section id="about">
+        <div class="container">
+          <h2 class="section-title">माझे लाडके नाना</h2>
+          <div class="about-wrapper">
+            <div class="about-text">
+              <p>नाना, लहानपणापासून तुम्ही माझ्यासोबत आहात. तुमच्या मांडीवर बसून गोष्टी ऐकण्यापासून ते शाळेत सोडण्यापर्यंत, प्रत्येक क्षणात तुमचं प्रेम भरलेलं आहे.</p>
+              <p>तुम्ही मला शिकवलं की संकटातही हसत राहायचं. तुमच्या डोळ्यांतला तो चमक मला नेहमी प्रेरणा देतो. मी मोठा झालो तरी तुमच्या नातवाचं ते लाडकेपण कधीही कमी झालं नाही.</p>
+              <div class="about-quote">"नाना, तुम्ही माझे सुपरहिरो आहात. फक्त तुमचा हात माझ्या डोक्यावर असावा, एवढंच पुरे आहे."</div>
+            </div>
+            <div class="about-icon">
+              <i class="fas fa-hand-holding-heart"></i>
+              <p style="margin-top: 0.8rem; font-weight: 600;">प्रेमाची ढाल</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: GALLERY - 6 IMAGES with local path images/image1.jpeg etc -->
+      <section id="gallery">
+        <div class="container">
+          <h2 class="section-title">प्रेमाची स्मृतिचित्रे</h2>
+          <div class="gallery-grid">
+            <!-- Image 1 -->
+            <div class="gallery-card">
+              <div class="gallery-img">
+                <img src="images/image1.jpeg" alt="नाना आणि शंतनु" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-fallback" style="display: none; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                  <i class="fas fa-image" style="font-size: 3rem; color: #FFB6C6;"></i>
+                  <p style="color: #FFB6C6; margin-top: 0.5rem;">📷 image1.jpeg</p>
+                  <p style="color: #FFB6C6; font-size: 0.7rem;">कृपया फोटो जोडा</p>
+                </div>
+                <div class="gallery-overlay"><span>❤️ नाना आणि शंतनु ❤️</span></div>
+              </div>
+              <div class="gallery-caption">प्रेमाचे अनमोल बंधन</div>
+            </div>
+            <!-- Image 2 -->
+            <div class="gallery-card">
+              <div class="gallery-img">
+                <img src="images/image2.jpeg" alt="कुटुंब एकत्र" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-fallback" style="display: none; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                  <i class="fas fa-image" style="font-size: 3rem; color: #FFB6C6;"></i>
+                  <p style="color: #FFB6C6; margin-top: 0.5rem;">📷 image2.jpeg</p>
+                  <p style="color: #FFB6C6; font-size: 0.7rem;">कृपया फोटो जोडा</p>
+                </div>
+                <div class="gallery-overlay"><span>🏠 कुटुंबातील आनंद 🏠</span></div>
+              </div>
+              <div class="gallery-caption">नानांच्या प्रेमाखाली सगळे एकत्र</div>
+            </div>
+            <!-- Image 3 -->
+            <div class="gallery-card">
+              <div class="gallery-img">
+                <img src="images/image3.jpeg" alt="हसरे नाना" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-fallback" style="display: none; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                  <i class="fas fa-image" style="font-size: 3rem; color: #FFB6C6;"></i>
+                  <p style="color: #FFB6C6; margin-top: 0.5rem;">📷 image3.jpeg</p>
+                  <p style="color: #FFB6C6; font-size: 0.7rem;">कृपया फोटो जोडा</p>
+                </div>
+                <div class="gallery-overlay"><span>😊 अनमोल हास्य 😊</span></div>
+              </div>
+              <div class="gallery-caption">नानांचं हास्य — सर्वात सुंदर दृष्य</div>
+            </div>
+            <!-- Image 4 -->
+            <div class="gallery-card">
+              <div class="gallery-img">
+                <img src="images/image4.jpeg" alt="आशीर्वाद" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-fallback" style="display: none; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                  <i class="fas fa-image" style="font-size: 3rem; color: #FFB6C6;"></i>
+                  <p style="color: #FFB6C6; margin-top: 0.5rem;">📷 image4.jpeg</p>
+                  <p style="color: #FFB6C6; font-size: 0.7rem;">कृपया फोटो जोडा</p>
+                </div>
+                <div class="gallery-overlay"><span>🌸 आशीर्वादाचा हात 🌸</span></div>
+              </div>
+              <div class="gallery-caption">तुमचा आशीर्वाद हाच खरा ठेवा</div>
+            </div>
+            <!-- Image 5 -->
+            <div class="gallery-card">
+              <div class="gallery-img">
+                <img src="images/image5.jpeg" alt="प्रार्थना" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-fallback" style="display: none; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                  <i class="fas fa-image" style="font-size: 3rem; color: #FFB6C6;"></i>
+                  <p style="color: #FFB6C6; margin-top: 0.5rem;">📷 image5.jpeg</p>
+                  <p style="color: #FFB6C6; font-size: 0.7rem;">कृपया फोटो जोडा</p>
+                </div>
+                <div class="gallery-overlay"><span>🙏 श्रद्धा आणि प्रार्थना 🙏</span></div>
+              </div>
+              <div class="gallery-caption">नानांची प्रार्थना — आमच्यासाठीच</div>
+            </div>
+            <!-- Image 6 -->
+            <div class="gallery-card">
+              <div class="gallery-img">
+                <img src="images/image6.jpeg" alt="नात्याचं प्रेम" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="image-fallback" style="display: none; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                  <i class="fas fa-image" style="font-size: 3rem; color: #FFB6C6;"></i>
+                  <p style="color: #FFB6C6; margin-top: 0.5rem;">📷 image6.jpeg</p>
+                  <p style="color: #FFB6C6; font-size: 0.7rem;">कृपया फोटो जोडा</p>
+                </div>
+                <div class="gallery-overlay"><span>👴👦 नात्याची गोडी 👴👦</span></div>
+              </div>
+              <div class="gallery-caption">शंतनु आणि नाना — कायमचं नातं</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: GUEST BOOK -->
+      <section id="guestbook">
+        <div class="container">
+          <h2 class="section-title">आशीर्वाद आणि शुभेच्छा</h2>
+          <div class="guestbook-wrapper">
+            <div class="guestbook-grid" id="blessingsList"></div>
+            <div class="add-blessing-form">
+              <input type="text" id="blessingName" placeholder="तुमचे नाव">
+              <textarea id="blessingMsg" placeholder="तुमच्या मनातल्या शुभेच्छा..." rows="2"></textarea>
+              <button class="btn" onclick="addWish()" style="padding: 0.8rem 1.5rem;">💝 आशीर्वाद द्या</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: VALUES -->
+      <section id="values">
+        <div class="container">
+          <h2 class="section-title">तुम्ही शिकवलेले धडे</h2>
+          <div class="values-grid">
+            <div class="value-card"><i class="fas fa-smile"></i><h3>प्रेमाची शक्ती</h3><p>रागावर प्रेमाची ढाल. शांतपणे समजावून घेणं हे खरं सामर्थ्य.</p></div>
+            <div class="value-card"><i class="fas fa-hands-helping"></i><h3>सेवाभाव</h3><p>प्रत्येकाला मदत करणे, कोणाला नकार न देणे — हा मोठा धडा.</p></div>
+            <div class="value-card"><i class="fas fa-seedling"></i><h3>श्रमाची किंमत</h3><p>सकाळी लवकर उठून काम करण्याची सवय. मेहनतीची किंमत शिकवली.</p></div>
+            <div class="value-card"><i class="fas fa-praying-hands"></i><h3>श्रद्धा</h3><p>प्रार्थनेचं सामर्थ्य, आशा कधी सोडू नये — हाच तुमचा संदेश.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: SHANTANU'S MESSAGE -->
+      <section id="message">
+        <div class="container">
+          <h2 class="section-title">नाना, हे फक्त तुमच्यासाठी</h2>
+          <div class="message-card">
+            <i class="fas fa-quote-left" style="font-size: 2rem; color: #FF6B8A;"></i>
+            <p class="message-text">"प्रिय नाना, मी शंतनु, तुमचा तोच लहान नातू. तुम्ही माझे गुरू, माझे मित्र, माझं सर्वस्व. तुमच्या हसण्यात मला सुरक्षित वाटतं. तुम्ही आमच्यासोबत आहात म्हणूनच आमचं कुटुंब पूर्ण आहे. वाढदिवसाच्या कोटी कोटी शुभेच्छा, माझे लाडके नाना! आयुष्यभर असेच हसत राहा — कारण तुमचं हास्य हीच आमची सर्वात मोठी संपत्ती आहे."</p>
+            <p style="margin-top: 1rem; font-weight: 700;">— तुमचा शंतनु (तुमचं लाडकं नातू)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: GRAND FINALE -->
+      <section id="finale">
+        <div class="container">
+          <div class="cake-section">
+            <div class="cake-icon">🎂</div>
+            <h2 style="font-size: 2rem; margin: 1rem 0; color: #6B3A47;">हॅप्पी बर्थडे, नाना!</h2>
+            <p>तुमच्या आयुष्यातील प्रत्येक दिवस आनंदाने भरलेला असो</p>
+            <button class="btn" onclick="celebrateFinale()" style="margin-top: 1rem;"><i class="fas fa-glass-cheers"></i> सेलिब्रेशन करूया! 🎉</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>🌸 तुमच्या नातवाने — मनापासून, शंतनुने 🌸</p>
+        <p>तुमचा प्रत्येक वाढदिवस असाच साजरा होवो | © २०२६</p>
+        <p><i class="fas fa-heart" style="color: #FF6B8A;"></i> नाना, तुम्ही आमच्यासोबत आहात — हेच सर्वात मोठं सुख</p>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<script>
+  // Music variables
+  let bgMusic = null;
+  let isMusicPlaying = false;
+
+  // Initialize music
+  function initMusic() {
+    bgMusic = document.getElementById('bgMusic');
+    if(bgMusic) {
+      bgMusic.volume = 0.5;
+      bgMusic.play().then(() => {
+        isMusicPlaying = true;
+        const statusSpan = document.getElementById('musicStatus');
+        if(statusSpan) statusSpan.innerText = 'संगीत सुरू आहे';
+      }).catch((e) => {
+        console.log('Autoplay blocked.');
+        isMusicPlaying = false;
+        const statusSpan = document.getElementById('musicStatus');
+        if(statusSpan) statusSpan.innerText = 'संगीत थांबले';
+      });
+    }
+  }
+
+  function toggleMusic() {
+    if (bgMusic) {
+      if (isMusicPlaying) {
+        bgMusic.pause();
+        isMusicPlaying = false;
+        const statusSpan = document.getElementById('musicStatus');
+        if(statusSpan) statusSpan.innerText = 'संगीत थांबले';
+        const icon = document.querySelector('#musicControl i');
+        if(icon) icon.className = 'fas fa-music fa-volume-mute';
+      } else {
+        bgMusic.play();
+        isMusicPlaying = true;
+        const statusSpan = document.getElementById('musicStatus');
+        if(statusSpan) statusSpan.innerText = 'संगीत सुरू आहे';
+        const icon = document.querySelector('#musicControl i');
+        if(icon) icon.className = 'fas fa-music';
+      }
+    }
+  }
+
+  // Initialize wishes data in localStorage
+  let wishesData = [];
+
+  function loadWishes() {
+    const stored = localStorage.getItem('nana_wishes');
+    if(stored) {
+      wishesData = JSON.parse(stored);
+    } else {
+      wishesData = [
+        { id: Date.now() + 1, name: "शंतनु", message: "नाना, तुम्ही आमच्यासाठी प्रेरणा आहात. दीर्घायुष्यासाठी शुभेच्छा!", date: new Date().toLocaleDateString() },
+        { id: Date.now() + 2, name: "कुटुंबीय", message: "तुमचे प्रेम अनमोल आहे. वाढदिवसाच्या हार्दिक शुभेच्छा!", date: new Date().toLocaleDateString() }
+      ];
+      localStorage.setItem('nana_wishes', JSON.stringify(wishesData));
+    }
+    displayWishes();
+  }
+
+  function displayWishes() {
+    const container = document.getElementById('blessingsList');
+    if(container) {
+      container.innerHTML = wishesData.map(wish => `
+        <div class="blessing-card">
+          <i class="fas fa-quote-left"></i>
+          <p class="blessing-text">"${wish.message}"</p>
+          <p class="blessing-name">- ${wish.name}</p>
+          <p style="font-size: 0.7rem; color: #999;">${wish.date}</p>
+        </div>
+      `).join('');
+    }
+  }
+
+  function addWish() {
+    let name = document.getElementById('blessingName').value.trim();
+    let msg = document.getElementById('blessingMsg').value.trim();
+    if(!name) name = "प्रिय व्यक्ती";
+    if(!msg) { alert("कृपया तुमच्या शुभेच्छा लिहा!"); return; }
+    
+    const newWish = {
+      id: Date.now(),
+      name: name,
+      message: msg,
+      date: new Date().toLocaleDateString()
+    };
+    wishesData.unshift(newWish);
+    localStorage.setItem('nana_wishes', JSON.stringify(wishesData));
+    displayWishes();
+    document.getElementById('blessingName').value = '';
+    document.getElementById('blessingMsg').value = '';
+    alert('❤️ तुमचा आशीर्वाद जोडला गेला! धन्यवाद! ❤️');
+  }
+
+  // Admin functions
+  function showLoginModal() {
+    document.getElementById('loginModal').style.display = 'flex';
+  }
+
+  function closeLoginModal() {
+    document.getElementById('loginModal').style.display = 'none';
+  }
+
+  function checkLogin() {
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
+    if(username === 'shantanu' && password === 'nana123') {
+      closeLoginModal();
+      showAdminPanel();
+    } else {
+      alert('Invalid credentials! Use: shantanu / nana123');
+    }
+  }
+
+  function showAdminPanel() {
+    const adminPanel = document.getElementById('adminPanel');
+    const wishesListAdmin = document.getElementById('wishesListAdmin');
+    wishesListAdmin.innerHTML = wishesData.map(wish => `
+      <div class="wish-item">
+        <div>
+          <strong>${wish.name}</strong><br>
+          <small>${wish.date}</small>
+          <p>${wish.message}</p>
+        </div>
+        <button class="delete-wish" onclick="deleteWish(${wish.id})">Delete</button>
+      </div>
+    `).join('');
+    adminPanel.style.display = 'block';
+  }
+
+  function closeAdminPanel() {
+    document.getElementById('adminPanel').style.display = 'none';
+  }
+
+  function deleteWish(id) {
+    wishesData = wishesData.filter(wish => wish.id !== id);
+    localStorage.setItem('nana_wishes', JSON.stringify(wishesData));
+    displayWishes();
+    showAdminPanel();
+  }
+
+  // Surprise functions
+  function createConfetti() {
+    const icons = ['🌸', '🌷', '🌹', '🎂', '🎉', '❤️', '✨', '💐', '🎈', '🥳', '💖'];
+    for(let i = 0; i < 100; i++) {
+      const particle = document.createElement('div');
+      particle.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+      particle.style.position = 'fixed';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.top = '-50px';
+      particle.style.fontSize = (15 + Math.random() * 35) + 'px';
+      particle.style.pointerEvents = 'none';
+      particle.style.zIndex = '10001';
+      particle.style.animation = 'fallParticle 2.5s linear forwards';
+      document.body.appendChild(particle);
+      setTimeout(() => particle.remove(), 4000);
+    }
+  }
+
+  function openSurprise() {
+    createConfetti();
+    const overlay = document.getElementById('surpriseOverlay');
+    const website = document.getElementById('websiteWrapper');
+    const musicControl = document.getElementById('musicControl');
+    
+    overlay.style.opacity = '0';
+    setTimeout(() => {
+      overlay.style.display = 'none';
+      website.classList.add('show');
+      if(musicControl) musicControl.style.display = 'flex';
+      
+      initMusic();
+      
+      const sections = document.querySelectorAll('#websiteWrapper section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+      }, { threshold: 0.1 });
+      sections.forEach(section => observer.observe(section));
+    }, 800);
+  }
+
+  function celebrateFinale() {
+    const icons = ['🌸','🌷','🌹','🎂','🎉','❤️','✨','💐','🎈','🥳','💖'];
+    for(let i=0; i<80; i++) {
+      let conf = document.createElement('div');
+      conf.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+      conf.style.position = 'fixed';
+      conf.style.left = Math.random() * 100 + '%';
+      conf.style.top = '-30px';
+      conf.style.fontSize = (15 + Math.random() * 40) + 'px';
+      conf.style.pointerEvents = 'none';
+      conf.style.zIndex = '9999';
+      conf.style.animation = 'fallParticle 2.5s linear forwards';
+      document.body.appendChild(conf);
+      setTimeout(() => conf.remove(), 3000);
+    }
+    alert('🎉 नानांच्या वाढदिवसाच्या हार्दिक शुभेच्छा! 🎉\n🌸 तुमच्या आयुष्यात आनंदाची उधळण असो! 🌸');
+  }
+
+  // Add animation style
+  const style = document.createElement('style');
+  style.textContent = '@keyframes fallParticle { 0% { transform: translateY(-30px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(360deg); opacity: 0; } }';
+  document.head.appendChild(style);
+
+  // Smooth scroll
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a[href^="#"]');
+    if(link) {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      if(href && href !== '#') {
+        const target = document.querySelector(href);
+        if(target) { window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' }); }
+      }
+    }
+  });
+
+  // Initialize
+  loadWishes();
+</script>
+</body>
+</html>
